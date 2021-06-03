@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# Explicitly include these files to be tracked
+!.gitignore
+!.tmux.conf
+!.bashrc
+!.vimrc
+
+# And these folders
+!.vim
