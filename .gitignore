@@ -7,5 +7,9 @@
 !.bashrc
 !.vimrc
 
+# Some styling files
+!.vim/colors/gruvbox.vim
+
 # And these folders
 !.vim
+!.vim/colors
