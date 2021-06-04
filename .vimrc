@@ -50,7 +50,6 @@ Plugin 'nginx.vim'
 Plugin 'tpope/vim-fugitive'
 
 
-
 " ====================================================================
 " Airline + airline theme
 " ref: https://github.com/vim-airline/vim-airline
@@ -67,7 +66,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" unicode symbols
+" unicode symbols fix
 let g:airline_left_sep = '»'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '«'
@@ -96,6 +95,67 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
+
+
+" ====================================================================
+" Vim language server stuff
+" ref: https://github.com/neoclide/coc.nvim
+Plugin 'https://github.com/neoclide/coc.nvim'
+
+" Coc settings
+" use tab for autocomplete
+function! s:check_back_space() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<Tab>" : 
+	\ coc#refresh()
+
+" use ctrl+space for autocomplete
+if has('nvim')
+	inoremap <silent><expr> <c-space> coc#refresh()
+else
+	inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+
+
+" Function for previewing documentation
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	elseif (coc#rpc#ready())
+		call CocActionAsync('doHover')
+	else
+		execute '!' . &keywordprg . " " . expand('<cword>')
+	endif
+endfunction
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+
+" ====================================================================
+" Polyglot syntax highlighting
+" ref: https://github.com/sheerun/vim-polyglot 
+Plugin 'sheerun/vim-polyglot'
+
 
 
 
@@ -154,23 +214,12 @@ set syntax=enable				" Will enable syntax highlighting
 
 " Status line configs
 set laststatus=2				" Always diplay status line
-"set statusline=
-" desired background color
-""set statusline+=%#multiple_cursors_visual#
-"set statusline+=%#PmenuSel#
-"set statusline+=%{GitBranchStatusline()}
-"set statusline+=%#LineNr#
-"set statusline+=\ %f
-"set statusline+=%m\
-"set statusline+=%=
-"set statusline+=%#CursorColumn#
-"set statusline+=\ %y
-"set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-"set statusline+=\[%{&fileformat}\]
-"set statusline+=\ %p%%
-"set statusline+=\ %l:%c
-"set statusline+= 
 
+
+
+" Omnisharp settings
+let g:OmniSharp_server_type = 'roselyn'
+let g:Omnisharp_prefer_global_sln = 1
 
 " -------------- Hotkeys mapping ----------------------------
 " Change hjkl into jklö (j=left, k=down, l=up, ö=right)
