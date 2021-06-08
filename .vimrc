@@ -17,6 +17,14 @@ Plugin 'gmarik/Vundle.vim'
 " ====================================================================
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Plugin configuration
+" let g:ctrlp_custom_ignore = 'bin|obj|node_modules'
+"let g:ctrlp_custom_ignore = {
+"	'dir': '\.git$\|node_modules\|project_files$\|bin\|obj',
+"	'file': ''
+"}
+let g:ctrlp_custom_ignore = 'bin|obj'
+
 
 " ====================================================================
 " Nerdtree, make it easier to navigate between files
@@ -24,6 +32,10 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+" open files in a new tab instead of new buffer
+let NERDTreeMapOpenInTab='<C-ENTER>'
+
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Exit vim if nerdtree is the only window left active
 
 " Maps to toggle nerdtree with Ctrl+N
