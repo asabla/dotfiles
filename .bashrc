@@ -111,5 +111,11 @@ alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Status}
 # Fetch logs from sfasdf
 alias docfetch='docker exec -it nginx-gen cat /etc/nginx/conf.d/default.conf'
 
+# Exports
+#############################################
+# set default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 
 complete -C /usr/bin/mc mc
