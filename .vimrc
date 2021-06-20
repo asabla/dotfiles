@@ -41,7 +41,8 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " open files in a new tab instead of new buffer
 let NERDTreeMapOpenInTab='<C-ENTER>'
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Exit vim if nerdtree is the only window left active
+" Exit vim if nerdtree is the only window left active
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
 
 " Maps to toggle nerdtree with Ctrl+N
 "map <C-n> :NERDTreeToggle<CR>
@@ -139,7 +140,6 @@ else
 endif
 
 
-
 " Function for previewing documentation
 function! s:show_documentation()
 	if (index(['vim','help'], &filetype) >= 0)
@@ -167,6 +167,16 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 
+" fix navigation between windows
+" will come later
+" ref:
+" https://stackoverflow.com/questions/9047107/navigating-between-vim-windows-in-an-alternative-way
+
+" Allows for navigation with ctrl+jklö between windows
+"nnoremap <C-j> <C-w>h
+"nnoremap <C-k> <C-w>j
+"nnoremap <C-l> <C-w>k
+"nnoremap <C-ö> <C-w>l
 
 " ====================================================================
 " Polyglot syntax highlighting
@@ -212,7 +222,6 @@ set shiftwidth=2        " when indenting with '>', use 2spaces width
 set backspace=indent,start	
 "set backspace=indent,eol,start		" will not erease text beyond end of line
 
-
 set noswapfile          " Disable swapfiles
 set autoread            " Autoread external changes
 set number              " Enable numbered lines
@@ -231,7 +240,6 @@ set syntax=enable				" Will enable syntax highlighting
 
 " Status line configs
 set laststatus=2				" Always diplay status line
-
 
 
 " Omnisharp settings
@@ -317,3 +325,4 @@ augroup END
 syntax enable
 set background=dark
 colorscheme gruvbox
+
