@@ -102,6 +102,18 @@ if ! shopt -oq posix; then
 fi
 
 
+# Enable powerline with go module
+#############################################
+#GOPATH=$HOME/go
+export PATH=$PATH:/usr/bin/go/bin
+function _update_ps1() {
+    PS1="$($GOPATH/bin/powerline-go -error $? -jobs $(jobs -p | wc -l))"
+}
+
+if [ "$TERM" != "linux" ] && [ -f "$GOPATH/bin/powerline-go" ]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
+
 # Aliases
 #############################################
 
