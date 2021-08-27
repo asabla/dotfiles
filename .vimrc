@@ -133,11 +133,11 @@ inoremap <silent><expr> <Tab>
 	\ coc#refresh()
 
 " use ctrl+space for autocomplete
-if has('nvim')
-	inoremap <silent><expr> <c-space> coc#refresh()
-else
-	inoremap <silent><expr> <c-@> coc#refresh()
-endif
+"if has('nvim')
+"	inoremap <silent><expr> <c-space> coc#refresh()
+"else
+"	inoremap <silent><expr> <c-@> coc#refresh()
+"endif
 
 
 " Function for previewing documentation
@@ -184,6 +184,22 @@ command! -nargs=0 Format :call CocAction('format')
 Plugin 'sheerun/vim-polyglot'
 
 
+" ====================================================================
+" Omnisharp-vim plugin
+" ref: https://freesoft.dev/program/1503507
+Plugin 'Omnisharp/omnisharp-vim'
+
+" Timeout in seconds to wait for a response from omnisharp server
+let g:Omnisharp_timeout = 5
+
+" Don't autoselect first omnicomplete option, show options even if there is
+" only one (so the preview documentation is accessible). Remove 'preview' if
+" you don't want to see any documentation whatsoever.
+set completeopt=longest,menuone,preview
+
+" Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+nmap <c-space> :OmniSharpGetCodeActions<CR>
 
 
 " ====================================================================
@@ -219,7 +235,7 @@ endfunction
 set tabstop=2           " Show existing tab with 2 spaces width
 set shiftwidth=2        " when indenting with '>', use 2spaces width
 "set backspace=2			    " make backspace work like most other programs
-set backspace=indent,start	
+"set backspace=indent,start	
 "set backspace=indent,eol,start		" will not erease text beyond end of line
 
 set noswapfile          " Disable swapfiles
