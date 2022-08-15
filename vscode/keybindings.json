@@ -1,0 +1,16 @@
+[
+    { "key": "ctrl+shift+c", "command": "-workbench.action.terminal.openNativeConsole", "when": "!terminalFocus" },
+    { "key": "ctrl+shift+c", "command": "workbench.action.terminal.focusNext" },
+
+    // Toggle terminal with ctrl + shift + ö
+    { "key": "ctrl+shift+oem_3", "command": "workbench.action.terminal.toggleTerminal" },
+
+    // Toggle maximize terminal panel
+    { "key": "ctrl+shift+q", "command": "workbench.action.toggleMaximizedPanel" },
+
+    // Focus current tab in editor (kind of focus mode)
+    { "key": "ctrl+shift+space ctrl+shift+space", "command": "workbench.action.toggleEditorWidths" },
+
+    // Pane management (such as hide file explorer)
+    { "key": "ctrl+k ctrl+b", "command": "workbench.action.toggleSidebarVisibility" }
+]
