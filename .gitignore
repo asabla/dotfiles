@@ -13,3 +13,9 @@
 # And these folders
 !.vim
 !.vim/colors
+
+!**/
+!*.lua
+!*.json
+!*.md
+!*.toml
